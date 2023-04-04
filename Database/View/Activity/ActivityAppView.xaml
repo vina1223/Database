@@ -60,7 +60,7 @@
                                        >
                                 <Grid ColumnDefinitions="9,*">
                                     <VerticalStackLayout Grid.Column="0"
-                                         BackgroundColor="{Binding}">
+                                         BackgroundColor="{Binding ChangeColor}">
 
                                     </VerticalStackLayout>
                                     <VerticalStackLayout Grid.Column="1"
@@ -96,6 +96,5 @@
                    WidthRequest="60"
                    Source="add"
                    Command="{Binding AddCommand}" />
-
     </Grid>
 </ContentPage>

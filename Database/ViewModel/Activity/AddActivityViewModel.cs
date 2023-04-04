@@ -16,7 +16,7 @@ namespace Database.ViewModel.Activity
         private string _name;
         private string _date;
         private bool _complete;
-        private Color _ChangeColor;
+       
         public string Name 
         {
             get { return _name; }
@@ -45,23 +45,7 @@ namespace Database.ViewModel.Activity
             }
         }
 
-        public Color ChangeColor
-        {
-            get { return _ChangeColor; }
-            set
-            {
-                _ChangeColor = value;
-                if(Complete == true)
-                {
-                    _ChangeColor = Colors.Green;
-                }
-                else
-                {
-                    _ChangeColor= Colors.Red;
-                }
-                OnPropertyChanged();
-            }
-        }
+       
 
         public ICommand AddActivityCommand { get; private set; }
         public AddActivityViewModel()

@@ -10,13 +10,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Database.Model.Activity;
 using System.Windows.Input;
+using System.Numerics;
 
 namespace Database.ViewModel.Activity
 {
     public class ActivityViewModel : INotifyPropertyChanged
     {
         public ActivityDatabase _activitydatabase;
-       
+        public AddActivityViewModel _addActivity;
 
 
         private string _name;
@@ -31,6 +32,34 @@ namespace Database.ViewModel.Activity
             set
             {
                 _myActivity = value;
+                OnPropertyChanged();
+            }
+        }
+        
+        public bool Complete
+        {
+            get { return _complete; }
+            set
+            {
+                _complete = value;
+                OnPropertyChanged();
+            }
+        }
+        private Color _ChangeColor;
+        public Color ChangeColor
+        {
+            get { return _ChangeColor; }
+            set
+            {
+                _ChangeColor = value;
+                if (Complete == true)
+                {
+                    _ChangeColor = Colors.Green;
+                }
+                else
+                {
+                    _ChangeColor = Colors.Red;
+                }
                 OnPropertyChanged();
             }
         }
@@ -50,6 +79,7 @@ namespace Database.ViewModel.Activity
         {
             var result = await _activitydatabase.GetListAsync();
             MyActivity = _activitydatabase.ActivityTable.ToObservableCollection();
+            Complete = _addActivity.Complete;
         }
 
         public void NaviagtionMethod()
