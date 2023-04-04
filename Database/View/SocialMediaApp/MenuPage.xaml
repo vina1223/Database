@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Database.View.SocialMediaApp.MenuPage"
+             xmlns:ViewModel="clr-namespace:Database.ViewModel.SocialMediaApp"
+             Title="MenuPage">
+
+    <ContentPage.BindingContext>
+        <ViewModel:MenuPageViewModel></ViewModel:MenuPageViewModel>
+    </ContentPage.BindingContext>
+    
+    <Grid RowDefinitions="Auto,*">
+        <StackLayout Grid.Row="0"
+                     BackgroundColor="CadetBlue"
+                     Padding="20"
+                     >
+            <Frame Padding="0"
+                   CornerRadius="50"
+                   HeightRequest="90"
+                   WidthRequest="90"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   >
+                <Image Source="dotnet_bot"/>
+            </Frame>
+
+            <Label Text="Elon Musk"
+                   TextColor="White"
+                   FontSize="Title"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   />
+            <Label Text="30.5M Followers"
+                   TextColor="White"
+                   FontSize="Subtitle"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   />
+
+        </StackLayout>
+
+        <VerticalStackLayout Grid.Row="1"
+                             Margin="10,60,10,10"
+                             >
+            <CollectionView 
+                   ItemsSource="{Binding MyItem}">
+                <CollectionView.GestureRecognizers>
+                    
+                </CollectionView.GestureRecognizers>
+                <CollectionView.ItemTemplate>
+                <DataTemplate>
+                        <StackLayout>
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup Name="CommonStates">
+                                <VisualState Name="Normal"/>
+                                <VisualState Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="Frame.BackgroundColor"
+                                        TargetName="Profile"
+                                        Value="SkyBlue"/>
+                                            <Setter Property="Label.TextColor"
+                                        TargetName="Label1"
+                                        Value="White"/>
+                                        </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+
+                        <Frame Margin="0,0,0,20"
+                               x:Name="Profile">
+                            <HorizontalStackLayout Spacing="15">
+                    <Image Source="{Binding Image}"
+                           HeightRequest="30"
+                           WidthRequest="30"/>
+                                
+                        <Label Text="{Binding Name}"
+                           x:Name="Label1"
+                           TextColor="Black"
+                           FontSize="15"
+                           VerticalTextAlignment="Center"/>
+                            </HorizontalStackLayout>
+                        </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

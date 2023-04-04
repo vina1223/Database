@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Database.View.RegisterLogin.DashboardScreenView"
+             xmlns:ViewModel="clr-namespace:Database.ViewModel.RegisterLogin"
+             BackgroundColor="#2F2E33"
+             Title="DashboardScreenView">
+
+    <NavigationPage.TitleView>
+        <Grid ColumnDefinitions="*,*">
+            <Label Text="Home"
+                   Grid.Column="0"
+                   VerticalOptions="Center"
+                   HorizontalOptions="End"
+                     Margin="0,0,20,0"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   />
+            <Label Text="Logout"
+                   Grid.Column="1"
+                    VerticalOptions="Center"
+                   HorizontalOptions="EndAndExpand"
+                   Margin="0,0,10,0"
+                   TextColor="White"
+                   FontAttributes="Bold"
+                   />
+        </Grid>
+    </NavigationPage.TitleView>
+
+    <ContentPage.BindingContext>
+        <ViewModel:DashboardViewModel></ViewModel:DashboardViewModel>
+    </ContentPage.BindingContext>
+    
+    <ScrollView>
+        <StackLayout>
+            <Grid RowDefinitions="Auto,*"
+                  ColumnDefinitions="Auto,*"
+                  ColumnSpacing="20"
+                  Margin="30,50,30,30"
+                  >
+                <Frame Grid.Row="0"
+                       Grid.RowSpan="2"
+                       Grid.Column="0"
+                       HeightRequest="70"
+                       WidthRequest="70"
+                       Padding="0"
+                       CornerRadius="40"
+                       BorderColor="White"
+                       >
+                    <Image Source="dotnet_bot"
+                           />
+                </Frame>
+
+                <Label Text="{Binding UserName}"
+                       Grid.Column="1"
+                       Grid.Row="0"
+                       FontSize="25"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       />
+                <Label Text="Welcome to 88 ERP System"
+                       TextColor="#4C4B50"
+                       FontAttributes="Bold"
+                       Grid.Column="1"
+                       Grid.Row="1"/>
+            </Grid>
+            <Grid RowDefinitions="Auto,Auto"
+                  ColumnDefinitions="Auto,Auto"
+                 ColumnSpacing="25"
+                  RowSpacing="30"
+                  Margin="30"
+                  HorizontalOptions="Center"
+                  >
+                <Frame Grid.Column="0"
+                       Grid.Row="0"
+                       Padding="55"
+                       BackgroundColor="#39383E"
+                       BorderColor="#39383E"
+                       CornerRadius="20"
+                       >
+                    <StackLayout VerticalOptions="Center"
+                                 Spacing="20"
+                                 >
+                        <Image Source="message"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               />
+                        <Label Text="Product"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               TextColor="#4C4B50"
+                               
+                               />
+                    </StackLayout>
+
+                </Frame>
+                <Frame Grid.Column="1"
+                       Grid.Row="0"
+                       Padding="55"
+                        BackgroundColor="#39383E"
+                       BorderColor="#39383E"
+                       CornerRadius="20"
+                       >
+                    <StackLayout VerticalOptions="Center"
+                                 Spacing="20"
+                                 >
+                        <Image Source="message"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               />
+                        <Label Text="Product"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                                TextColor="#4C4B50"
+                               />
+                    </StackLayout>
+                </Frame>
+                <Frame Grid.Column="0"
+                       Grid.Row="1"
+                       Padding="55"
+                        BackgroundColor="#39383E"
+                       BorderColor="#39383E"
+                       CornerRadius="20"
+                       >
+                    <StackLayout VerticalOptions="Center"
+                                 Spacing="20"
+                                 >
+                        <Image Source="message"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               />
+                        <Label Text="Product"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                                TextColor="#4C4B50"
+                               />
+                    </StackLayout>
+                </Frame>
+                <Frame Grid.Column="1"
+                       Grid.Row="1"
+                       Padding="55"
+                        BackgroundColor="#39383E"
+                       BorderColor="#39383E"
+                       CornerRadius="20"
+                       >
+                    <StackLayout VerticalOptions="Center"
+                                 Spacing="20"
+                                 >
+                        <Image Source="message"
+                               HeightRequest="50"
+                               WidthRequest="50"
+                               />
+                        <Label Text="Product"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                                TextColor="#4C4B50"
+                               />
+                    </StackLayout>
+                </Frame>
+
+            </Grid>
+            
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

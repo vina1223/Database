@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Database.View.RegisterLogin.LoginScreenView"
+             xmlns:ViewModel="clr-namespace:Database.ViewModel.RegisterLogin"
+             Title="LoginScreenView">
+
+    <ContentPage.BindingContext>
+        <ViewModel:LoginViewModel></ViewModel:LoginViewModel>
+    </ContentPage.BindingContext>
+    
+    <ScrollView>
+        <StackLayout Spacing="15"
+                     Margin="10,0"
+                     >
+            <Image Source="dotnet_bot"
+                   HeightRequest="40"
+                   WidthRequest="40"
+                   HorizontalOptions="Start"
+                   />
+            <Label Text="Register"
+                   FontAttributes="Bold"
+                   FontSize="25"
+                    Margin="0,0,0,10"
+                   />
+            <Label Text="UserName"
+                   FontSize="16"/>
+            <Frame Padding="5"
+                    Margin="0,0,0,10"
+                  
+                   >
+                <Entry Placeholder="Enter Your UserName"
+                       Text="{Binding LoginUser}"
+                       
+                       Margin="5,0"
+                       />
+            </Frame>
+
+            <Label Text="Password"
+                   FontSize="16"/>
+            <Frame Padding="5"
+                    Margin="0,0,0,10"
+                   >
+                <Entry Placeholder="Enter Your Password"
+                       Text="{Binding LoginPassword }"
+                       IsPassword="True"
+                        Margin="5,0"
+                       />
+            </Frame>
+
+            <Button Text="Login"
+                    CornerRadius="4"
+                    Command="{Binding LoginCommand}"
+                    
+                    />
+            <Grid ColumnDefinitions="*,Auto,*"
+                  Margin="0,15"
+                  ColumnSpacing="10"
+                  >
+                <Line BackgroundColor="Gray"
+                      Grid.Column="0"
+                      HeightRequest="1"
+                      />
+                <Label Text="Or"
+                       Grid.Column="1"
+                       />
+                <Line BackgroundColor="Gray"
+                      Grid.Column="2"
+                       HeightRequest="1"
+                      />
+
+            </Grid>
+
+            <Frame BorderColor="Blue">
+                <Label Text="Login With Google"
+                       HorizontalOptions="Center"
+                       />
+            </Frame>
+            <Frame BorderColor="Blue">
+                <Label Text="Login With Google"
+                       HorizontalOptions="Center" />
+            </Frame>
+
+            <Label Text="Already Have An Account? Register"
+                   HorizontalOptions="Center" 
+                   />
+
+        </StackLayout>
+    </ScrollView> 
+</ContentPage>

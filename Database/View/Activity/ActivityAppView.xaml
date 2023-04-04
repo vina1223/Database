@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Database.View.Activity.ActivityAppView"
+             xmlns:ViewModel ="clr-namespace:Database.ViewModel.Activity"
+             Title="ActivityAppView">
+
+    <ContentPage.BindingContext>
+        <ViewModel:ActivityViewModel></ViewModel:ActivityViewModel>
+    </ContentPage.BindingContext>
+
+    <NavigationPage.TitleView>
+        <Label Text="Your Activity"
+               TextColor="White"
+               VerticalOptions="Center"
+               />
+    </NavigationPage.TitleView>
+
+
+    <Grid Margin="10">
+
+        <ActivityIndicator IsRunning="{Binding Activity}"
+                           Color="Blue"
+                           IsVisible="{Binding Activity}"
+                           />
+
+
+        <CollectionView ItemsSource="{Binding MyActivity}"
+                        x:Name="CollectionView">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                             Span=" 1"
+                             VerticalItemSpacing="10"
+                             >
+                </GridItemsLayout>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete"
+                                           IconImageSource="delete"
+                                           BackgroundColor="Red"
+                                           CommandParameter="{Binding}"
+                                           Command="{Binding Source={x:Reference CollectionView}, Path=BindingContext.DeleteCommand}"
+                                           />
+                                <SwipeItem Text="Edit"
+                                           IconImageSource="edit"
+                                           BackgroundColor="Green" 
+                                           CommandParameter="{Binding}" 
+                                           Command="{Binding Source={x:Reference CollectionView}, Path=BindingContext.EditButton}"
+                                           />
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <StackLayout >
+                            <Frame Padding="0"
+                                       >
+                                <Grid ColumnDefinitions="9,*">
+                                    <VerticalStackLayout Grid.Column="0"
+                                         BackgroundColor="{Binding}">
+
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="1"
+                                                         Padding="13"
+                                                         Spacing="10"
+                                                         >
+                                        <Label Text="{Binding Name}"
+                                                   FontAttributes="Bold"/>
+                                        <HorizontalStackLayout Spacing="10">
+                                            <Image Source="clock"
+                                                       HeightRequest="10"
+                                                       WidthRequest="10"/>
+                                            <Label Text="{Binding Date}"/>
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+
+                    </SwipeView>
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+
+        <ImageButton BackgroundColor="Transparent"
+                   HorizontalOptions="End"
+                   VerticalOptions="EndAndExpand"
+                   Padding="0"
+                   HeightRequest="60"
+                   WidthRequest="60"
+                   Source="add"
+                   Command="{Binding AddCommand}" />
+
+    </Grid>
+</ContentPage>
