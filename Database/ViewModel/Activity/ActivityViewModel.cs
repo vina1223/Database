@@ -90,7 +90,7 @@ namespace Database.ViewModel.Activity
         public async Task EditAsync(Activitytable e)
         {
             _activitydatabase.Id = e.Id;
-            var updateResult = await _activitydatabase.UpdateAsync();
+            var updateResult = 
             UpdateEvent?.Invoke(this, updateResult);
         }
 
