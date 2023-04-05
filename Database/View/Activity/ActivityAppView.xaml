@@ -16,6 +16,8 @@
                />
     </NavigationPage.TitleView>
 
+    <RefreshView IsRefreshing="{Binding IsRefreshing}"
+             Command="{Binding RefreshCommand}" >
 
     <Grid Margin="10">
 
@@ -60,7 +62,7 @@
                                        >
                                 <Grid ColumnDefinitions="9,*">
                                     <VerticalStackLayout Grid.Column="0"
-                                         BackgroundColor="{Binding ChangeColor}">
+                                         BackgroundColor="{Binding }">
 
                                     </VerticalStackLayout>
                                     <VerticalStackLayout Grid.Column="1"
@@ -97,4 +99,5 @@
                    Source="add"
                    Command="{Binding AddCommand}" />
     </Grid>
+    </RefreshView>
 </ContentPage>

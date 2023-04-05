@@ -45,8 +45,6 @@ namespace Database.ViewModel.Activity
             }
         }
 
-       
-
         public ICommand AddActivityCommand { get; private set; }
         public AddActivityViewModel()
         {

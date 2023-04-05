@@ -2,7 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Database.View.Activity.UpdateActivityView"
+             xmlns:ViewModel="clr-namespace:Database.ViewModel.Activity"
              Title="UpdateActivityView">
+
+    <ContentPage.BindingContext>
+        <ViewModel:UpdateActivityViewModel></ViewModel:UpdateActivityViewModel>
+    </ContentPage.BindingContext>
 
     <ScrollView>
         <StackLayout VerticalOptions="Center"
@@ -16,7 +21,7 @@
                            Text="{Binding Name}"
                            />
                     <DatePicker FontAttributes="Bold"
-                                Date="{Binding DateTime}"/>
+                                Date="{Binding Date}"/>
 
                     <HorizontalStackLayout HorizontalOptions="CenterAndExpand"
                                        Spacing="10">
@@ -26,11 +31,11 @@
                            FontAttributes="Bold"
                            />
                         <Switch
-                            IsToggled="{Binding IsComplete}"
+                            IsToggled="{Binding Complete}"
                             />
                     </HorizontalStackLayout>
                     <Button Text="Update"
-                            Command="{Binding UpdateCommand}"
+                            Command="{Binding UpdateActivityCommand}"
                             />
                 </StackLayout>
             </Frame>

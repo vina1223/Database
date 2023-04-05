@@ -1,16 +1,11 @@
 ﻿using Database.Database;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using CommunityToolkit.Maui.Core.Extensions;
-using System.Text;
-using System.Threading.Tasks;
 using Database.Model.Activity;
 using System.Windows.Input;
-using System.Numerics;
+using Database.Result;
 
 namespace Database.ViewModel.Activity
 {
@@ -18,6 +13,7 @@ namespace Database.ViewModel.Activity
     {
         public ActivityDatabase _activitydatabase;
         public AddActivityViewModel _addActivity;
+        
 
 
         private string _name;
@@ -25,6 +21,7 @@ namespace Database.ViewModel.Activity
         private bool _complete;
         private ObservableCollection<Activitytable> _myActivity;
         public event EventHandler NavigationEvent;
+        public event EventHandler<Results> UpdateEvent;
 
         public ObservableCollection<Activitytable> MyActivity
         {
@@ -64,7 +61,21 @@ namespace Database.ViewModel.Activity
             }
         }
 
+        private bool _isRefreshing;
+        public bool IsRefreshing
+        {
+            get { return _isRefreshing; }
+            set
+            {
+                _isRefreshing = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ICommand AddCommand { get; private set; }
+        public ICommand DeleteCommand { get; private set; }
+        public ICommand EditButton { get; private set; }
+        public ICommand RefreshCommand { get; private set; }
 
         public ActivityViewModel()
         {
@@ -72,20 +83,37 @@ namespace Database.ViewModel.Activity
             _activitydatabase.CreateDatabase();
            _= _activitydatabase.CreateTableAsync();
             AddCommand = new Command(NaviagtionMethod);
+            DeleteCommand = new Command<Activitytable>(Delete);
+            EditButton = new Command<Activitytable>((Activitytable) => { EditAsync(Activitytable); });  
+        }
 
+        public async Task EditAsync(Activitytable e)
+        {
+            _activitydatabase.Id = e.Id;
+            var updateResult = await _activitydatabase.UpdateAsync();
+            UpdateEvent?.Invoke(this, updateResult);
         }
 
         public async Task GetData()
         {
             var result = await _activitydatabase.GetListAsync();
             MyActivity = _activitydatabase.ActivityTable.ToObservableCollection();
-            Complete = _addActivity.Complete;
+            Complete = _addActivity.Complete;   
         }
+
+        public async void Delete(Activitytable e)
+        {
+            var result = await _activitydatabase.DeleteAsync();
+            MyActivity.Remove(e);
+        }
+
+       
 
         public void NaviagtionMethod()
         {
             NavigationEvent?.Invoke(this, new EventArgs());
         }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 

@@ -1,12 +1,6 @@
 ﻿using Database.Model.Activity;
+using Database.Result;
 using SQLite;
-using SQLitePCL;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Database.Database
 {
@@ -17,6 +11,7 @@ namespace Database.Database
         public string Name { get; set; }    
         public string Date { get; set; }
         public bool Complete { get; set; }
+        public int Id { get; set; }
 
         public List<Activitytable> ActivityTable { get; set; }
 
@@ -67,8 +62,55 @@ namespace Database.Database
                 Console.WriteLine(e.Message);
             }
             return false;
-          
-
         }
+
+        public async Task<bool> DeleteAsync()
+        {
+            var activitytable = new Activitytable()
+            {
+                Id=Id,
+            };
+            return await _connection.DeleteAsync(activitytable)>0;
+        }
+
+        public async Task<Results> UpdateAsync()
+        {
+            try
+            {
+                
+            var list = await _connection.Table<Activitytable>().ToListAsync();
+
+            var records = list.Where(x => x.Id == Id).FirstOrDefault();
+            Name = records.Name;
+            Date = records.Date;
+            Complete = records.Complete;
+
+                if (records == null)
+                {
+                    return new Results()
+                    {
+                        IsSuccess = false,
+                    };
+                }
+                else
+                {
+                    return new Results()
+                    {
+                        IsSuccess = true,
+                        Id = Id,
+                    };
+                }
+                
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+            
+           
+        }
+
+      
     }
 }

@@ -53,6 +53,7 @@
 	  <None Remove="Resources\Images\list.svg" />
 	  <None Remove="Resources\Images\message.svg" />
 	  <None Remove="Resources\Images\profile.svg" />
+	  <None Remove="ViewModel\Activity\UpdateActivityViewModel.cs~RF5ac39e5.TMP" />
 	</ItemGroup>
 
 	<ItemGroup>
