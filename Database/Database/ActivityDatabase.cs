@@ -43,6 +43,8 @@ namespace Database.Database
             return ActivityTable;  
         }
 
+       
+
         public async Task<bool> InsertAsync()
         {
             var activitytable = new Activitytable()
@@ -73,11 +75,10 @@ namespace Database.Database
             return await _connection.DeleteAsync(activitytable)>0;
         }
 
-        public async Task<Results> UpdateAsync()
+        public async Task<Results> GetDataAsync()
         {
             try
-            {
-                
+            {   
             var list = await _connection.Table<Activitytable>().ToListAsync();
 
             var records = list.Where(x => x.Id == Id).FirstOrDefault();
@@ -109,6 +110,29 @@ namespace Database.Database
             }
             
            
+        }
+
+        public async Task<bool> UpdateAsync()
+        {
+            var Update = new Activitytable()
+            {
+                Id = Id,
+                Name = Name,
+                Date = Date,
+                Complete = Complete,
+            };
+            try
+            {
+                var results = await _connection.UpdateAsync(Update);
+                var newResults = results>0;
+                return newResults;
+
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return false;
         }
 
       

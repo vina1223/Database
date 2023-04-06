@@ -16,20 +16,21 @@ public partial class UpdateActivityView : ContentPage
 		_ = GetListAsync();
 	}
 
-    private void _viweModel_UpdateEvent(object sender, Result.Results e)
+    private void _viweModel_UpdateEvent(object sender, bool e)
     {
-		if (e.IsSuccess)
-		{
-			Toast.Make("Success", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
-			Navigation.PopToRootAsync();
-		}
-		else
-		{
-			Toast.Make("Fail", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
-		}
+
+        if (e)
+        {
+            Toast.Make("Success", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
+            Navigation.PopToRootAsync();
+        }
+        else
+        {
+            Toast.Make("Fail", CommunityToolkit.Maui.Core.ToastDuration.Short).Show();
+        }
     }
 
-	private async Task GetListAsync()
+    private async Task GetListAsync()
 	{
 		await _viweModel.DisplayDetails();
 	}

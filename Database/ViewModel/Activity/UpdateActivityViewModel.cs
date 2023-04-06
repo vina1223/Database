@@ -17,7 +17,7 @@ namespace Database.ViewModel.Activity
     {
         public event PropertyChangedEventHandler PropertyChanged;
         public ActivityDatabase _activtityDatatbase;
-        public event EventHandler<Results> UpdateEvent;
+        public event EventHandler<bool> UpdateEvent;
 
 
         private string _name;
@@ -78,7 +78,7 @@ namespace Database.ViewModel.Activity
         public async Task DisplayDetails()
         {
             _activtityDatatbase.Id = Id;
-            await _activtityDatatbase.UpdateAsync();
+            await _activtityDatatbase.GetDataAsync();
             Name = _activtityDatatbase.Name;
             Date = _activtityDatatbase.Date;
             Complete = _activtityDatatbase.Complete;

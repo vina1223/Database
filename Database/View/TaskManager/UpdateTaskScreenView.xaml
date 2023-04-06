@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Database.View.TaskManager.UpdateTaskScreenView"
+             xmlns:ViewModel="clr-namespace:Database.ViewModel.TaskManager"
+             Title="UpdateTaskScreenView">
+
+    <ContentPage.BindingContext>
+        <ViewModel:UpdateListViewModel></ViewModel:UpdateListViewModel>
+    </ContentPage.BindingContext>
+    
+    <ScrollView>
+        <StackLayout Margin="15">
+            <Label Text="Task Name"
+                   FontAttributes="Bold"
+                   FontSize="17"
+                   Margin="0,20,0,5"
+                   />
+            <Frame Padding="5">
+                <Entry Placeholder=""
+                       Text="{Binding Name}"
+                       />
+            </Frame>
+
+            <Label Text="Description"
+                   FontAttributes="Bold"
+                   FontSize="17"
+                   Margin="0,20,0,5"
+                   />
+            <Frame Padding="5">
+                <Editor Placeholder=""
+                        Text="{Binding Description}"
+                        />
+            </Frame>
+
+            <Label Text="Completion Date"
+                   FontAttributes="Bold"
+                   FontSize="17"
+                   Margin="0,20,0,5"
+                   />
+            <Frame Padding="5">
+                <DatePicker Date="{Binding Date}"/>
+            </Frame>
+
+            <Grid RowDefinitions="*,*"
+                  ColumnDefinitions="*,*"
+                  ColumnSpacing="15"
+                  >
+                <Label Text="Start Time"
+                   FontAttributes="Bold"
+                   FontSize="17"
+                   Margin="0,20,0,5"                       
+                   Grid.Column="0"
+                   Grid.Row="0"
+                   />
+                <Frame Padding="5"
+                       Grid.Column="1"
+                       Grid.Row="1"
+                       Margin="0,0,0,10"
+                       >
+                    <TimePicker Time="{Binding StartTime}"/>
+                </Frame>
+
+                <Label 
+                   Text="End Time"
+                   FontAttributes="Bold"
+                   FontSize="17"
+                   Margin="0,20,0,5"
+                   Grid.Column="1"
+                   Grid.Row="0"
+                   />
+                <Frame Padding="5"
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       Margin="0,0,0,10"
+                       >
+                    <TimePicker Time="{Binding EndTime}"/>
+                </Frame>
+            </Grid>
+
+            <Button Text="Update Task"
+                    VerticalOptions="EndAndExpand"
+                    BackgroundColor="CadetBlue"
+                    TextColor="White"
+                    FontAttributes="Bold"
+                    FontSize="17"
+                    CornerRadius="15"
+                    Margin="0,0,0,10"
+                    Command="{Binding UpdateCommand}"
+                    />
+
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

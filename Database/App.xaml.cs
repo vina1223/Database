@@ -1,7 +1,9 @@
 ﻿using Database.View.Activity;
 using Database.View.NewFolder;
 using Database.View.RegisterLogin;
+using Database.View.Shopify;
 using Database.View.SocialMediaApp;
+using Database.View.TaskManager;
 using Database.View.Telegram;
 using Database.ViewModel.Activity;
 
@@ -13,6 +15,6 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		MainPage =new NavigationPage(new ActivityAppView());
+		MainPage =new ShopifyScreenView();
 	}
 }

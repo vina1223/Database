@@ -50,6 +50,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\activity.svg" />
+	  <None Remove="Resources\Images\add.png" />
 	  <None Remove="Resources\Images\list.svg" />
 	  <None Remove="Resources\Images\message.svg" />
 	  <None Remove="Resources\Images\profile.svg" />
@@ -58,8 +59,11 @@
 
 	<ItemGroup>
 	  <PackageReference Include="CommunityToolkit.Maui" Version="2.0.0" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	  <PackageReference Include="Refit" Version="6.3.2" />
 	  <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 	  <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.4" />
+	  <PackageReference Include="Xam.Plugin.Connectivity" Version="3.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -81,6 +85,9 @@
 	  <MauiXaml Update="View\RegisterLogin\RegisterScreenView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="View\Shopify\ShopifyScreenView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="View\SocialMediaApp\HomePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
@@ -88,6 +95,15 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\SocialMediaApp\SocialMedia.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\TaskManager\CreateNewTaskScreenView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\TaskManager\TaskListingScreenView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\TaskManager\UpdateTaskScreenView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\Telegram\MenuPage.xaml">

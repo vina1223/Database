@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Database.View.Shopify.ShopifyScreenView"
+             Title="ShopifyScreenView"
+             xmlns:ViewModel="clr-namespace:Database.ViewModel.Shopify"
+             >
+    <ContentPage.BindingContext>
+        <ViewModel:ShopifyViewModel></ViewModel:ShopifyViewModel>
+    </ContentPage.BindingContext>
+    
+    <RefreshView IsRefreshing="{Binding Refreshing}"
+                 Command="{Binding RefeshCommand}"
+                 >
+        <ScrollView>
+            <StackLayout Margin="15">
+                <ActivityIndicator Color="Blue"
+                               IsRunning="{Binding Activity}"
+                               IsVisible="{Binding Activity}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               />
+                <Label Text="Hello John how are you?"/>
+
+                <CollectionView ItemsSource="{Binding ShopifyDetailsList}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout 
+                        Orientation="Vertical"
+                        Span="2"
+                        VerticalItemSpacing="10"
+                        HorizontalItemSpacing="15"/>
+                    </CollectionView.ItemsLayout>
+
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Padding="12">
+                                <Grid RowDefinitions="*,Auto"
+                                  RowSpacing="10">
+
+                                    <Image Source="{Binding Images}"
+                                               Grid.Row="0"/>
+
+                                    <Grid RowDefinitions="*,*,*"
+                                      ColumnDefinitions="*,*"
+                                      Grid.Row="1" 
+                                      RowSpacing="5"
+                                      ColumnSpacing="12">
+                                        <Label Text="{Binding Brand }"
+                                           FontAttributes="Bold"
+                                           FontSize="14"
+                                           Grid.Column="0"
+                                           Grid.Row="0"
+                                           Grid.ColumnSpan="2"
+                                           HorizontalOptions="Center"
+                                           />
+                                        <Label Text="{Binding Title }"
+                                           FontAttributes="Bold"
+                                           FontSize="14"
+                                           Grid.Column="0"
+                                           Grid.Row="1"
+                                           Grid.ColumnSpan="2"
+                                           HorizontalOptions="Center"
+                                           />
+                                        <Label Text="{Binding Price}"
+                                           FontAttributes="Bold"
+                                           FontSize="14"
+                                           Grid.Column="0"
+                                           Grid.Row="2"
+                                           HorizontalOptions="Center"
+                                           />
+                                        <Label Text="{Binding Stock}"
+                                           FontAttributes="Bold"
+                                           FontSize="14"
+                                           Grid.Column="1"
+                                           Grid.Row="2"
+                                           HorizontalOptions="Center"
+                                           />
+                                    </Grid>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+    </RefreshView>
+</ContentPage>

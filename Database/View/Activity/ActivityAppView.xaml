@@ -17,17 +17,16 @@
     </NavigationPage.TitleView>
 
     <RefreshView IsRefreshing="{Binding IsRefreshing}"
-             Command="{Binding RefreshCommand}" >
+             Command="{Binding RefreshCommand}" 
+                 Margin="10">
 
     <Grid Margin="10">
 
-        <ActivityIndicator IsRunning="{Binding Activity}"
+            <ActivityIndicator IsRunning="{Binding Activity}"
                            Color="Blue"
                            IsVisible="{Binding Activity}"
                            />
-
-
-        <CollectionView ItemsSource="{Binding MyActivity}"
+            <CollectionView ItemsSource="{Binding MyActivity}"
                         x:Name="CollectionView">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"

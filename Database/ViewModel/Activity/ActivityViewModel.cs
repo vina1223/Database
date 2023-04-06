@@ -13,8 +13,6 @@ namespace Database.ViewModel.Activity
     {
         public ActivityDatabase _activitydatabase;
         public AddActivityViewModel _addActivity;
-        
-
 
         private string _name;
         private string _date;
@@ -84,13 +82,14 @@ namespace Database.ViewModel.Activity
            _= _activitydatabase.CreateTableAsync();
             AddCommand = new Command(NaviagtionMethod);
             DeleteCommand = new Command<Activitytable>(Delete);
-            EditButton = new Command<Activitytable>((Activitytable) => { EditAsync(Activitytable); });  
+            EditButton = new Command<Activitytable>((Activitytable) => { EditAsync(Activitytable); });
+            RefreshCommand = new Command(()=> { _=NewDataRefresh(); });
         }
 
         public async Task EditAsync(Activitytable e)
         {
             _activitydatabase.Id = e.Id;
-            var updateResult = 
+            var updateResult = await _activitydatabase.GetDataAsync();
             UpdateEvent?.Invoke(this, updateResult);
         }
 
@@ -98,11 +97,20 @@ namespace Database.ViewModel.Activity
         {
             var result = await _activitydatabase.GetListAsync();
             MyActivity = _activitydatabase.ActivityTable.ToObservableCollection();
-            Complete = _addActivity.Complete;   
+            Complete = _addActivity.Complete;           
+        }
+
+        public async Task NewDataRefresh()
+        {
+            IsRefreshing = true;
+            var result = await _activitydatabase.GetListAsync();
+            MyActivity = _activitydatabase.ActivityTable.ToObservableCollection();
+            IsRefreshing = false;
         }
 
         public async void Delete(Activitytable e)
         {
+            _activitydatabase.Id = e.Id;
             var result = await _activitydatabase.DeleteAsync();
             MyActivity.Remove(e);
         }

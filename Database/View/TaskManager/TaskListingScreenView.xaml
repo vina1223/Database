@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Database.View.TaskManager.TaskListingScreenView"
+             xmlns:ViewModel="clr-namespace:Database.ViewModel.TaskManager"
+             Title="TaskListingScreenView">
+
+    <ContentPage.BindingContext>
+        <ViewModel:TaskListingViewModel></ViewModel:TaskListingViewModel>
+    </ContentPage.BindingContext>
+    
+    <RefreshView IsRefreshing="{Binding IsRefreshing}"
+             Command="{Binding RefreshCommand}" 
+                 Margin="10">
+
+        <Grid Margin="10">
+
+            <ActivityIndicator IsRunning="{Binding Activity}"
+                           Color="Blue"
+                           IsVisible="{Binding Activity}"
+                           />
+            <CollectionView ItemsSource="{Binding TaskListActivity}"
+                        x:Name="CollectionView">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                             Span=" 1"
+                             VerticalItemSpacing="10"
+                             >
+                    </GridItemsLayout>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Delete"
+                                           IconImageSource="delete"
+                                           BackgroundColor="Red"
+                                           CommandParameter="{Binding}"
+                                           Command="{Binding Source={x:Reference CollectionView}, Path=BindingContext.DeleteCommand}"
+                                           />
+
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+
+                            <SwipeView.LeftItems>
+                                <SwipeItem Text="Edit"
+                                           IconImageSource="edit"
+                                           BackgroundColor="Green" 
+                                           CommandParameter="{Binding}" 
+                                           Command="{Binding Source={x:Reference CollectionView}, Path=BindingContext.EditCommand}"
+                                           />
+                            </SwipeView.LeftItems>
+                            <StackLayout >
+                                <Frame Padding="0"
+                                       >
+                                    <Grid ColumnDefinitions="*,Auto"
+                                          RowDefinitions="*,*,*">
+                                        <Label Text="{Binding Name}"
+                                              FontSize="Title"
+                                              FontAttributes="Bold"
+                                              TextColor="Black"
+                                               Grid.Column="0"
+                                               Grid.Row="0"
+                                               />
+                                        <Label Text="{Binding CompletionDate} "
+                                               TextColor="Black"
+                                               FontAttributes="Bold"
+                                               Grid.Column="0"
+                                               Grid.Row="1"/>
+                                        <Label Text="{Binding StartTime} "
+                                               TextColor="Black"
+                                               FontAttributes="Bold"
+                                               Grid.Column="0"
+                                               Grid.Row="2"/>
+                                        <Image Source="dornet_bot"
+                                               Grid.Column="1"
+                                               Grid.Row="0"
+                                               Grid.RowSpan="3"
+                                               HeightRequest="40"
+                                               WidthRequest="40"
+                                               VerticalOptions="Center"/>
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+
+                        </SwipeView>
+                    </DataTemplate>
+
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+
+            <ImageButton 
+                   BackgroundColor="Transparent"
+                   HorizontalOptions="End"
+                   VerticalOptions="EndAndExpand"
+                   Padding="0"
+                   HeightRequest="60"
+                   WidthRequest="60"
+                   Source="add"
+                   Command="{Binding AddTaskCommand}" />
+        </Grid>
+    </RefreshView>
+</ContentPage>
