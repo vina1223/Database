@@ -1,15 +1,10 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Database.HttpModel
 {
     public class ShopifyResponceModel
     {
-        [JsonProperty("data")]
+        [JsonProperty("products")]
         public List<ShopifyDetails> GetShopifyDetails { get; set; }
 
         [JsonProperty("total")]
@@ -52,7 +47,7 @@ namespace Database.HttpModel
         public string Category { get; set; }
 
         [JsonProperty("thumbnail")]
-        public string Thumbnail { get; set; }
+        public ImageSource Thumbnail { get; set; }
 
         [JsonProperty("images")]
         public List<string> Images { get; set; }

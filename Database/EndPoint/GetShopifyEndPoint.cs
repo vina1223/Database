@@ -13,7 +13,7 @@ namespace Database.EndPoint
         public async Task<HttpResponseMessage> ExecuteAsync()
         {
             return await RestService.
-                For<IShopify>("https://dummyjson.com/products").
+                For<IShopify>("https://dummyjson.com").
                 GetProductList();
         }
     }

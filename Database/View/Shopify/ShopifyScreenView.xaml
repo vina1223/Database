@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Database.View.Shopify.ShopifyScreenView"
              Title="ShopifyScreenView"
+             BackgroundColor="#F5F5F5"
              xmlns:ViewModel="clr-namespace:Database.ViewModel.Shopify"
              >
     <ContentPage.BindingContext>
@@ -12,77 +13,81 @@
     <RefreshView IsRefreshing="{Binding Refreshing}"
                  Command="{Binding RefeshCommand}"
                  >
-        <ScrollView>
-            <StackLayout Margin="15">
-                <ActivityIndicator Color="Blue"
+
+        <Grid Padding="15"
+              >
+            <ActivityIndicator Color="Blue"
                                IsRunning="{Binding Activity}"
                                IsVisible="{Binding Activity}"
                                HorizontalOptions="Center"
                                VerticalOptions="Center"
                                />
-                <Label Text="Hello John how are you?"/>
+            <Label Text="Hello John how are you?"/>
 
-                <CollectionView ItemsSource="{Binding ShopifyDetailsList}">
-                    <CollectionView.ItemsLayout>
-                        <GridItemsLayout 
+            <CollectionView ItemsSource="{Binding ShopifyDetailsList}">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout 
                         Orientation="Vertical"
                         Span="2"
                         VerticalItemSpacing="10"
                         HorizontalItemSpacing="15"/>
-                    </CollectionView.ItemsLayout>
+                </CollectionView.ItemsLayout>
 
 
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Frame Padding="12">
-                                <Grid RowDefinitions="*,Auto"
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame Padding="0">
+                            <Grid RowDefinitions="150,Auto"
                                   RowSpacing="10">
 
-                                    <Image Source="{Binding Images}"
+                                <Image Source="{Binding Thumbnail}"
+                                       Aspect="AspectFill"      
                                                Grid.Row="0"/>
 
-                                    <Grid RowDefinitions="*,*,*"
-                                      ColumnDefinitions="*,*"
+                                <Grid RowDefinitions="Auto,Auto,Auto"
+                                      ColumnDefinitions="*,Auto"
                                       Grid.Row="1" 
                                       RowSpacing="5"
-                                      ColumnSpacing="12">
-                                        <Label Text="{Binding Brand }"
+                                      Padding="12"
+                                      >
+                                    <Label Text="{Binding Brand, StringFormat='Brand: {0:Brand}' }"
                                            FontAttributes="Bold"
                                            FontSize="14"
                                            Grid.Column="0"
                                            Grid.Row="0"
                                            Grid.ColumnSpan="2"
-                                           HorizontalOptions="Center"
+                                           HorizontalOptions="Start"
                                            />
-                                        <Label Text="{Binding Title }"
+                                    <Label Text="{Binding Title }"
                                            FontAttributes="Bold"
                                            FontSize="14"
                                            Grid.Column="0"
                                            Grid.Row="1"
                                            Grid.ColumnSpan="2"
-                                           HorizontalOptions="Center"
+                                           HorizontalOptions="Start"
                                            />
-                                        <Label Text="{Binding Price}"
+                                    <Label Text="{Binding Price, StringFormat='${0:d}'}"
                                            FontAttributes="Bold"
                                            FontSize="14"
                                            Grid.Column="0"
                                            Grid.Row="2"
-                                           HorizontalOptions="Center"
+                                           HorizontalOptions="Start"
+                                           TextColor="CadetBlue"
                                            />
-                                        <Label Text="{Binding Stock}"
+                                    <Label Text="{Binding Stock, StringFormat='InStocks {0:d}'}"
                                            FontAttributes="Bold"
                                            FontSize="14"
                                            Grid.Column="1"
                                            Grid.Row="2"
-                                           HorizontalOptions="Center"
+                                           HorizontalOptions="Start"
+                                           TextColor="Green"
                                            />
-                                    </Grid>
                                 </Grid>
-                            </Frame>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </StackLayout>
-        </ScrollView>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
     </RefreshView>
 </ContentPage>
